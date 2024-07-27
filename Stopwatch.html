@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #box {
+        width: 600px;
+        margin: 10% auto;
+        padding: 5% 0;
+        color: #e7eafb;
+        text-align: center;
+        background-color: #56649a;
+        box-shadow: 1px 0px 4px 2px #9c9a9a;
+        border-radius: 20px;
+    }
+
+    #stopwatch {
+        font-size: 100px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        width: 100px;
+        height: 30px;
+        background-color: #202020;
+        color: white;
+        border-radius: 6px;
+        border: 2px solid #fff;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    button:hover {
+        background-color: #fff;
+        color: #202020;
+    }
+</style>
+
+<body>
+
+    <div id="box">
+        <h1>Stopwatch</h1>
+        <div id="stopwatch">
+            <span id="hr">00</span>
+            <span id="m">00</span>
+            <span id="s">00</span>
+            <span id="ms">00</span>
+
+
+        </div>
+        <button id="start-btn" onclick="strt()">Start</button>
+        <button onclick="pause()">Pause</button>
+        <button onclick="reset()">Reset</button>
+    </div>
+
+    <script>
+
+        var hr = document.getElementById("hr")
+        var m = document.getElementById("m")
+        var s = document.getElementById("s")
+        var ms = document.getElementById("ms")
+
+        var hour = 00;
+        var minute = 00;
+        var second = 00;
+        var milliSeconds = 00;
+
+        function stopw() {
+            if (timer) {
+                milliSeconds++
+                if (milliSeconds == 100) {
+                    second++
+                    milliSeconds = 0
+                }
+
+                if (second == 60) {
+                    minute++
+                    second = 0
+                }
+
+                if (minute == 60) {
+                    hour++
+                    minute = 0
+                }
+
+                // var ghanta = hour
+                // var mint = minute
+                // var sec = second
+                // var mils = milliSeconds
+
+                setTimeout(stopw,10)
+
+                document.getElementById("hr").innerHTML = hour
+                document.getElementById("m").innerHTML = minute
+                document.getElementById("s").innerHTML = second
+                document.getElementById("ms").innerHTML = milliSeconds
+            }
+
+        }
+
+        function strt(){
+            timer = true
+            stopw()
+        }
+
+        function pause(){
+            timer = false
+            stopw()
+        }
+
+        function reset(){
+            timer = false 
+            hour = 0 
+            minute = 0
+            second = 0
+            milliSeconds = 0 
+             document.getElementById("hr").innerHTML = hour
+             document.getElementById("m").innerHTML = minute
+             document.getElementById("s").innerHTML = second
+             document.getElementById("ms").innerHTML = milliSeconds
+        }
+        
+    </script>
+</body>
+
+</html>
